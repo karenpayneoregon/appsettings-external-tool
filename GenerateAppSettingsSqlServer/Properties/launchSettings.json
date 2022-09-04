@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "GenerateAppSettingsSqlServer": {
+      "commandName": "Project"
+    }
+  }
+}
