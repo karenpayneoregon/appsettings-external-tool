@@ -14,7 +14,7 @@ class MenuOperations
             HighlightStyle = new Style(Color.Black, Color.White, Decoration.None)
         };
 
-        menu.Title("[black on yellow]Select a database[/]");
+        menu.Title("[white]Select a database[/]");
         menu.PageSize = 14;
 
         for (int index = 0; index < names.Count; index++)

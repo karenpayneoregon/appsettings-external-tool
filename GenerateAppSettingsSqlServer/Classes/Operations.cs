@@ -25,8 +25,8 @@ namespace GenerateAppSettingsSqlServer.Classes
 
                 Console.Clear();
 
-                AnsiConsole.MarkupLine($"[yellow]Path[/] {options.Folder}");
-                AnsiConsole.MarkupLine($"[yellow]Encrypt[/] {options.UseEncryption.ToUpper()}\n");
+                AnsiConsole.MarkupLine($"[cyan]   Path:[/] {options.Folder}");
+                AnsiConsole.MarkupLine($"[cyan]Encrypt:[/] {options.UseEncryption.ToUpper()}\n");
 
                 var menuItem = AnsiConsole.Prompt(MenuOperations.SelectionPrompt(tableNames));
                 if (menuItem.Id != -1)
