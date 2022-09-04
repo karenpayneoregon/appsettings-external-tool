@@ -19,7 +19,7 @@ namespace GenerateAppSettingsSqlServer.Classes
             using var cmd = new SqlCommand
             {
                 Connection = cn,
-                CommandText = "SELECT name FROM sys.databases WHERE name NOT IN ('master', 'tempdb','msdb', 'model') ORDER BY name"
+                CommandText = "SELECT name FROM sysdatabases WHERE dbid > 6  ORDER BY name"
             };
 
             cn.Open();
