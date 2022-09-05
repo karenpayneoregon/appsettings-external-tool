@@ -22,12 +22,21 @@ namespace GenerateAppSettingsSqlServer.Classes
                 CommandText = "SELECT name FROM sysdatabases WHERE dbid > 6  ORDER BY name"
             };
 
-            cn.Open();
-            using var reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            try
             {
-                list.Add(reader.GetString(0));
+                cn.Open();
+                using var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(reader.GetString(0));
+                }
+            }
+            catch (Exception localException)
+            {
+                ExceptionHelpers.ColorStandard(localException);
+                AnsiConsole.MarkupLine("[white]Press a key to exit[/]");
+                Console.ReadLine();
             }
 
             return list;
