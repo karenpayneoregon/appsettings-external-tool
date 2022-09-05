@@ -31,7 +31,6 @@ namespace GenerateAppSettingsSqlServer.Classes
                 var menuItem = AnsiConsole.Prompt(MenuOperations.SelectionPrompt(tableNames));
                 if (menuItem.Id != -1)
                 {
-                    Console.WriteLine(menuItem.Text);
                     FileOperations.WriteFile(options, menuItem.Text);
                 }
                 else

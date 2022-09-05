@@ -5,7 +5,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
-		<ApplicationIcon>assets\csharp.ico</ApplicationIcon>
+		<ApplicationIcon>assets\sql_blue_24_24.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -13,7 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="assets\csharp.ico" />
+	  <Content Include="assets\sql_blue_24_24.ico" />
 	  <Content Include="readme.md" />
 	</ItemGroup>
 
