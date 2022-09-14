@@ -9,11 +9,43 @@ namespace GenerateAppSettingsSqlServer.Classes
 {
     internal class DataOperations
     {
-        public static List<string> DatabaseNames()
+        public static List<string> ExpressDatabaseNames()
         {
             List<string> list = new List<string>();
 
             var connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=master;integrated security=True;Encrypt=False";
+
+            using var cn = new SqlConnection(connectionString);
+            using var cmd = new SqlCommand
+            {
+                Connection = cn,
+                CommandText = "SELECT name FROM sysdatabases WHERE dbid > 6  ORDER BY name"
+            };
+
+            try
+            {
+                cn.Open();
+                using var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(reader.GetString(0));
+                }
+            }
+            catch (Exception localException)
+            {
+                ExceptionHelpers.ColorStandard(localException);
+                AnsiConsole.MarkupLine("[white]Press a key to exit[/]");
+                Console.ReadLine();
+            }
+
+            return list;
+        }
+        public static List<string> LocalDbDatabaseNames()
+        {
+            List<string> list = new List<string>();
+
+            var connectionString = "Server=(localdb)\\MSSQLLocalDB;Initial Catalog=master;integrated security=True;Encrypt=False";
 
             using var cn = new SqlConnection(connectionString);
             using var cmd = new SqlCommand

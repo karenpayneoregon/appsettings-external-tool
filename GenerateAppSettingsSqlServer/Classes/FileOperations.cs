@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -12,26 +13,37 @@ namespace GenerateAppSettingsSqlServer.Classes
     {
         public static void WriteFile(Options options, string databaseName)
         {
-            var baseConnection1 = 
+            var baseExpressConnection1 = 
                 $"Data Source=.\\SQLEXPRESS;Initial Catalog={databaseName};" + 
                 $"integrated security=True;Encrypt=True";
 
-            var baseConnection2 =
+            var baseExpressConnection2 =
                 $"Data Source=.\\SQLEXPRESS;Initial Catalog={databaseName};" +
                 $"integrated security=True;";
 
 
+            var baseLocalDbConnection1 =
+                $"Server=(localdb)\\MSSQLLocalDB;Initial Catalog={databaseName};" +
+                $"integrated security=True;Encrypt=True";
+
+            var baseLocalDbConnection2 =
+                $"Server=(localdb)\\MSSQLLocalDB;Initial Catalog={databaseName};" +
+                $"integrated security=True;";
+
             var useEncryption = options.UseEncryption.ToLower() == "yes";
+
+            ;
 
             Configuration configuration = new Configuration()
             {
                 ActiveEnvironment = "Development", 
-                Development = useEncryption ? baseConnection1 : baseConnection2, 
-                Production = useEncryption ? baseConnection1 : baseConnection2, 
-                Stage = useEncryption ? baseConnection1 : baseConnection2
+                Development = useEncryption ? baseLocalDbConnection1 : baseLocalDbConnection2, 
+                Production = useEncryption ? baseLocalDbConnection1 : baseLocalDbConnection2, 
+                Stage = useEncryption ? baseLocalDbConnection1 : baseLocalDbConnection2
             };
+            RootSettings rootSettings = new RootSettings() { ConnectionsConfiguration = configuration };
 
-            string jsonString = JsonSerializer.Serialize(configuration, new JsonSerializerOptions()
+            string jsonString = JsonSerializer.Serialize(rootSettings, new JsonSerializerOptions()
             {
                 WriteIndented = true
             });

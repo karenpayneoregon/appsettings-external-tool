@@ -7,3 +7,11 @@ public class Configuration
     public string Stage { get; set; }
     public string Production { get; set; }
 }
+
+
+public class RootSettings
+{
+    public Configuration ConnectionsConfiguration { get; set; }
+}
+
+

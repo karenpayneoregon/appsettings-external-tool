@@ -13,7 +13,7 @@ namespace GenerateAppSettingsSqlServer
         [ModuleInitializer]
         public static void Init()
         {
-            Console.Title = "Appsettings create for sql-server";
+            Console.Title = "Appsettings create for sql-server: LocalDb";
             WindowUtility.SetConsoleWindowPosition(WindowUtility.AnchorWindow.Center);
         }
     }

@@ -18,7 +18,7 @@ namespace GenerateAppSettingsSqlServer.Classes
                 return;
             }
 
-            var tableNames = DataOperations.DatabaseNames();
+            var tableNames = DataOperations.LocalDbDatabaseNames();
 
             while (true)
             {
