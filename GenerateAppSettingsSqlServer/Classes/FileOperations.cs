@@ -28,11 +28,11 @@ namespace GenerateAppSettingsSqlServer.Classes
 
             var baseLocalDbConnection2 =
                 $"Server=(localdb)\\MSSQLLocalDB;Initial Catalog={databaseName};" +
-                $"integrated security=True;";
+                $"integrated security=True;Encrypt=False";
 
             var useEncryption = options.UseEncryption.ToLower() == "yes";
 
-            ;
+            
 
             Configuration configuration = new Configuration()
             {
@@ -48,7 +48,21 @@ namespace GenerateAppSettingsSqlServer.Classes
                 WriteIndented = true
             });
 
-            File.WriteAllText(Path.Combine(options.Folder,"appsettings.json"), jsonString);
+            var fileName = Path.Combine(options.Folder, "appsettings.json");
+            if (File.Exists(fileName))
+            {
+                fileName = "appsettings_" + UniqueFileName(false);
+                File.WriteAllText(fileName, jsonString);
+            }
+            else
+            {
+                File.WriteAllText(fileName, jsonString);
+            }
+            
         }
+
+        public static string UniqueFileName(bool useGuid, string extension = ".json") => useGuid ?
+            $"{DateTime.Now:yyyy-dd-M--HH-mm-ss-ms}{Guid.NewGuid()}{extension}" :
+            $"{DateTime.Now:yyyy-dd-M--HH-mm-ss-ms}{extension}";
     }
 }

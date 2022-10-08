@@ -1,10 +1,8 @@
-﻿using CommandLine.Text;
-using CommandLine;
-using GenerateAppSettingsSqlServer.Classes;
+﻿using CommandLine;
+using CommandLine.Text;
 using GenerateAppSettingsSqlServer.Models;
 
-
-namespace ComputerDetails.Classes
+namespace GenerateAppSettingsSqlServer.Classes
 {
     public class CommandLineHelp
     {

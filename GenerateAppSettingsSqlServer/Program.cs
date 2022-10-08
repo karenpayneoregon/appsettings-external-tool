@@ -1,4 +1,4 @@
-﻿using ComputerDetails.Classes;
+﻿using GenerateAppSettingsSqlServer.Classes;
 
 namespace GenerateAppSettingsSqlServer;
 

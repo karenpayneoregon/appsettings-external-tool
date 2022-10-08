@@ -16,4 +16,7 @@ public class Options
     [Option('u', "useencryption", Required = true, HelpText = "use encrypt")]
     public string UseEncryption { get; set; }
 
+    [Option('l', "uselocaldb", HelpText = "use LocalDb")]
+    public string UseLocalDb { get; set; }
+
 }

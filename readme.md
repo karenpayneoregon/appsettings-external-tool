@@ -21,6 +21,14 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 }
 ```
 
+## EF Core 7
+
+Encrypt defaults to true for SQL Server connections (see [this page](https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-7.0/breaking-changes#encrypt-true))
+
+Using `-f $(ProjectDir) -u no` will ensure there are no issues moving forward.
+
+
+
 ## With SqlClient
 
 - Add the package [Configuration library](https://www.nuget.org/packages/ConfigurationLibrary/) to a project
@@ -63,10 +71,17 @@ Configure without encryption for connection string
 | Arguments | -f $(ProjectDir) -u no | 
 | Initial directory | $(ProjectDir) |  
 
+### Specify localDb or SqlExpress
 
+`-l no` uses SqlExpress while `-l yes` will use localDb for either of the above setups.
 
 ![Adding](assets/adding.png)
 
+# ASP.NET Core
+
+Currently not configured as there are two many variables in the structure of the appsettings.json file. What you can do is run the tool with an existing appsettings.json file and a unique appsettings file is created so the settings can be copied to your appsettings file.
+
+Will be thinking about a work around for this.
 
 # Summary
 

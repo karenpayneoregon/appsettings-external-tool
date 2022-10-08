@@ -1,7 +1,9 @@
 {
   "profiles": {
     "GenerateAppSettingsSqlServer": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "-f $(ProjectDir) -u no -l no",
+      "workingDirectory": "C:\\OED\\DotnetLand\\VS2022\\AppsettingsSqlServerSolution\\GenerateAppSettingsSqlServer"
     }
   }
 }

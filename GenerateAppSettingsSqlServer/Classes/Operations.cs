@@ -18,7 +18,11 @@ namespace GenerateAppSettingsSqlServer.Classes
                 return;
             }
 
-            var tableNames = DataOperations.LocalDbDatabaseNames();
+            List<string> tableNames = 
+                options.UseLocalDb == "yes" ? 
+                    DataOperations.LocalDbDatabaseNames() : 
+                    DataOperations.ExpressDatabaseNames();
+            
 
             while (true)
             {
@@ -26,7 +30,8 @@ namespace GenerateAppSettingsSqlServer.Classes
                 Console.Clear();
 
                 AnsiConsole.MarkupLine($"[cyan]   Path:[/] {options.Folder}");
-                AnsiConsole.MarkupLine($"[cyan]Encrypt:[/] {options.UseEncryption.ToUpper()}\n");
+                AnsiConsole.MarkupLine($"[cyan]Encrypt:[/] {options.UseEncryption.ToUpper()}");
+                AnsiConsole.MarkupLine($"[cyan]LocalDb:[/] {options.UseLocalDb.ToUpper()}\n");
 
                 var menuItem = AnsiConsole.Prompt(MenuOperations.SelectionPrompt(tableNames));
                 if (menuItem.Id != -1)
