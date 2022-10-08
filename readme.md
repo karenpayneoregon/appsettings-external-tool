@@ -83,6 +83,28 @@ Currently not configured as there are two many variables in the structure of the
 
 Will be thinking about a work around for this.
 
+Here is how I use the connections
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionsConfiguration": {
+    "ActiveEnvironment": "Development",
+    "Development": "Server=(localdb)\\MSSQLLocalDB;Database=OED.Pizza;Trusted_Connection=True;Encrypt=False",
+    "Stage": "Stage connection string goes here",
+    "Production": "Prod connection string goes here"
+  }
+}
+```
+
+
+
 # Summary
 
 External Tools in Visual Studio offer the user to add tools such as this one along with other tools and to open common folders like the current bin folder of a selected project. Think about what you can do with external tools.
